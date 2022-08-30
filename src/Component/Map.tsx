@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MouseEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { Typography } from "./Base/Typography";
 import { Marker } from "./Marker";
 import { locationAtom, coordinateAtom } from "../atom";
