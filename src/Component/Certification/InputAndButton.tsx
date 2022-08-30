@@ -53,5 +53,5 @@ const StyledInputAndButton = styled.div`
   gap: ${({ theme: { spacing } }) => spacing[8]};
 `;
 const ButtonBox = styled.div`
-  width: 150px;
+  width: 185px;
 `;

@@ -1,5 +1,6 @@
 import { Typography } from "../Base/Typography";
 import { InputAndButton } from "./InputAndButton";
+import styled from "styled-components";
 import { WarnningText } from "../WarnningText";
 import {
   ChangeEvent,
@@ -8,6 +9,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { flexColumn } from "../../style";
 
 const REGEXP_NUMBER = /[^0-9]/;
 const PHONE_NUMBER = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -53,23 +55,21 @@ export function Phone({ setPhoneCertification }: PhoneProps) {
     setState(true);
   }, [phoneNumValue]);
   return (
-    <div>
+    <StyledPhone>
       <Typography size="16">휴대폰번호 인증</Typography>
       <Typography size="12" color="gray2">
         충전서비스 당첨시, 인증된 번호로 연락드립니다.
       </Typography>
-      <div>
-        <InputAndButton
-          onClick={handleSendPhone}
-          buttonState={!state || sendCertification}
-          buttonValue="인증번호 발송"
-          inputValue={phoneNumValue}
-          placeholder="테스트용으로 010 아무 번호 입력"
-          onChange={handlePhoneChange}
-          maxLength={11}
-          inputState={sendCertification}
-        />
-      </div>
+      <InputAndButton
+        onClick={handleSendPhone}
+        buttonState={!state || sendCertification}
+        buttonValue="인증번호 발송"
+        inputValue={phoneNumValue}
+        placeholder="테스트용으로 010 아무 번호 입력"
+        onChange={handlePhoneChange}
+        maxLength={11}
+        inputState={sendCertification}
+      />
       <WarnningText
         value={phoneNumValue}
         state={!state}
@@ -100,6 +100,10 @@ export function Phone({ setPhoneCertification }: PhoneProps) {
           />
         </div>
       )}
-    </div>
+    </StyledPhone>
   );
 }
+const StyledPhone = styled.div`
+  ${flexColumn}
+  gap: ${({ theme: { spacing } }) => spacing[8]};
+`;

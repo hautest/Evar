@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
 import { Select } from "../Base/Select";
 import styled from "styled-components";
+import { flexColumn } from "../../style";
 
 interface CarSelectListProps {
   onClick: (e: MouseEvent<HTMLDivElement>) => void;
@@ -21,6 +22,5 @@ export function CarSelectList({ onClick }: CarSelectListProps) {
 }
 
 const SelectBox = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn}
 `;
