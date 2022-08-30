@@ -1,4 +1,3 @@
-import { Typography } from "../Base/Typography";
 import { MouseEvent } from "react";
 import { Select } from "../Base/Select";
 import styled from "styled-components";

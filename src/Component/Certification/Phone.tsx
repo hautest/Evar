@@ -55,7 +55,7 @@ export function Phone({ setPhoneCertification }: PhoneProps) {
   return (
     <div>
       <Typography size="16">휴대폰번호 인증</Typography>
-      <Typography size="12" color="gray">
+      <Typography size="12" color="gray2">
         충전서비스 당첨시, 인증된 번호로 연락드립니다.
       </Typography>
       <div>
