@@ -45,6 +45,9 @@ export const Input = styled.input<InputProps>`
     font-size: ${spacing[fontSize]};
     border-radius: ${spacing[4]};
     padding: ${spacing[12]};
+    :disabled {
+      background-color: ${colors.gray};
+    }
   `}
   cursor: pointer;
   outline: none;
