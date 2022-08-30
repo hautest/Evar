@@ -1,6 +1,12 @@
 import styled, { css } from "styled-components";
+import { MouseEvent } from "react";
 
-export const Select = styled.div`
+export interface SelectProps {
+  value?: string;
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void;
+}
+
+export const Select = styled.div<SelectProps>`
   ${({ theme: { colors, spacing } }) => css`
     padding: ${spacing[12]};
     background-color: ${colors.white};

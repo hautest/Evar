@@ -1,13 +1,33 @@
-import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
-
+import { locationAtom, coordinateAtom } from "../atom";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { Button, Map, Typography } from "../Component";
 
 export function Home() {
-  const nav = useNavigate();
-  const handleClick = () => {
-    nav("/search");
+  const [location, setLocation] = useRecoilState(locationAtom);
+  const setCoordinate = useSetRecoilState(coordinateAtom);
+  const search = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data: any) {
+        setLocation(data.jibunAddress);
+      },
+    }).open();
   };
+  if (!!location) {
+    window.naver.maps.Service.geocode(
+      {
+        address: location,
+      },
+      function (status: any, response: any) {
+        if (status !== window.naver.maps.Service.Status.OK) {
+          return alert("Something wrong!");
+        }
+        const result = response.result;
+        const { x, y } = result.items[0].point;
+        setCoordinate({ x, y });
+      }
+    );
+  }
   return (
     <StyledHome>
       <Header>
@@ -19,7 +39,7 @@ export function Home() {
         <Map />
       </Main>
       <ButtonBox>
-        <Button onClick={handleClick}>위치를 검색하러가기</Button>
+        <Button onClick={search}>위치를 검색하러가기</Button>
       </ButtonBox>
     </StyledHome>
   );

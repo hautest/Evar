@@ -1,17 +1,28 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { MouseEvent, useEffect } from "react";
 import { Typography } from "./Base/Typography";
+import { Marker } from "./Marker";
 import { locationAtom, coordinateAtom } from "../atom";
 import { useRecoilState } from "recoil";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Map() {
+  const nav = useNavigate();
   const [location, setLocation] = useRecoilState(locationAtom);
   const [coordinate, setCoordinate] = useRecoilState(coordinateAtom);
+  const locationVaild =
+    (location[0] === "제" && location[1] === "주") || location === "";
+  const handleClick = () => {
+    if (!locationVaild) {
+      alert("제주도안에서만 호출 가능합니다 !");
+      return;
+    }
+    nav("/TermsAndConditions");
+  };
 
   useEffect(() => {
     const mapDiv = document.getElementById("map");
-
-    var jeju = new window.naver.maps.LatLngBounds(
+    const jeju = new window.naver.maps.LatLngBounds(
       new window.naver.maps.LatLng(33.1368681, 126.084821),
       new window.naver.maps.LatLng(33.6076496, 126.9657871)
     );
@@ -68,24 +79,16 @@ export function Map() {
         )}
       </Location>
       <MapRender id="map">
-        <Marker>중간 장소로 지정</Marker>
+        <Marker onClick={handleClick} state={locationVaild}>
+          {locationVaild
+            ? "중간 장소로 지정"
+            : "제주도안에서만 호출 가능합니다."}
+        </Marker>
       </MapRender>
     </StyledMap>
   );
 }
 
-const Marker = styled.div`
-  ${({ theme: { colors, spacing } }) => css`
-    background-color: ${colors.primary};
-    padding: ${spacing[8]};
-    border-radius: ${spacing[8]};
-    color: ${colors.white};
-    font-size: ${spacing[14]};
-  `}
-  cursor: pointer;
-  position: absolute;
-  z-index: 1;
-`;
 const StyledMap = styled.div`
   width: 100%;
   height: 100%;

@@ -4,3 +4,4 @@ export * from "./Base/Input";
 export * from "./Base/Modal";
 export * from "./Base/Select";
 export * from "./Map";
+export * from "./Marker";
