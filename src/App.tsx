@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Home, TermsAndConditions, Certification } from "./page";
+import { Home, TermsAndConditions, Certification, Confirmation } from "./page";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         <Route path="/certification" element={<Certification />} />
+        <Route path="/confirmation" element={<Confirmation />} />
       </Routes>
     </BrowserRouter>
   );

@@ -15,3 +15,5 @@ export * from "./WarnningText";
 export * from "./Certification/CarInformation";
 export * from "./Certification/Charge";
 export * from "./Certification/RequestTime";
+export * from "./ModalBackground";
+export * from "./ButtonInModal";

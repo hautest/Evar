@@ -9,29 +9,49 @@ import {
   CarInfomation,
   Charge,
   RequestTime,
+  Modal,
+  ButtonInModal,
+  ModalBackground,
   Button,
 } from "../Component";
-import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { locationAtom } from "../atom";
 import { flexColumn } from "../style";
+import { useNavigate } from "react-router-dom";
 
 export function Certification() {
+  const location = useRecoilValue(locationAtom);
+  const nav = useNavigate();
+
   const [isPhonCertification, setPhoneCertification] = useState(false);
+  const [phoneNum, setPhoneNum] = useState("");
   const [carName, setCarName] = useState("");
   const [carNum, setCarNum] = useState("");
   const [chargeValue, setChargeValue] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+
+  const [modal, setModal] = useState(false);
   const state = carName && chargeValue && date && time && carNum.length === 4;
-  const nav = useNavigate();
   const handleClick = () => {
-    nav("/");
+    setModal(true);
+  };
+  const handleCancel = () => {
+    setModal(false);
+  };
+  const handleNext = () => {
+    nav("/confirmation");
   };
   return (
     <StyledCertification>
       <Header />
       <FixedMap />
       {!isPhonCertification ? (
-        <Phone setPhoneCertification={setPhoneCertification} />
+        <Phone
+          phoneNum={phoneNum}
+          setPhoneNum={setPhoneNum}
+          setPhoneCertification={setPhoneCertification}
+        />
       ) : (
         <TypograpyBox>
           <Typography size="16">휴대폰 인증완료</Typography>
@@ -87,6 +107,38 @@ export function Certification() {
           </ButtonBox>
         </Main>
       )}
+      <Modal visible={modal}>
+        <ModalBackground>
+          <Typography size="20">★ 예약 내역 확인 ★</Typography>
+          <Typography color="gray2" size="16">
+            예약 완료 후 취소할 수 없습니다
+          </Typography>
+          <Typography color="gray2" size="16">
+            {`장소 : ${location}`}
+          </Typography>
+          <Typography color="gray2" size="16">
+            {`휴대폰번호 : ${phoneNum}`}
+          </Typography>
+          <Typography size="16" color="gray2">
+            {`차종 : ${carName}`}
+          </Typography>
+          <Typography size="16" color="gray2">
+            {`차량번호 : ${carNum}`}
+          </Typography>
+          <Typography size="16" color="gray2">
+            {`충전량 : ${chargeValue}`}
+          </Typography>
+          <Typography size="16" color="gray2">
+            {`충전요청시간 : ${date} ${time}`}
+          </Typography>
+          <ButtonInModal
+            rightClick={handleNext}
+            leftValue="취소"
+            rightValue="진행"
+            leftClick={handleCancel}
+          />
+        </ModalBackground>
+      </Modal>
     </StyledCertification>
   );
 }
