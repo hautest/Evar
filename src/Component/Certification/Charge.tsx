@@ -4,11 +4,15 @@ import { Select } from "../Base/Select";
 import { Typography } from "../Base/Typography";
 import { TypograpyBox } from "./TypograpyBox";
 import { flexColumn } from "../../style";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, Dispatch, SetStateAction } from "react";
 
-export function Charge() {
+interface ChargeProps {
+  chargeValue: string;
+  setChargeValue: Dispatch<SetStateAction<string>>;
+}
+
+export function Charge({ chargeValue, setChargeValue }: ChargeProps) {
   const [modal, setModal] = useState(false);
-  const [chargeValue, setChargeValue] = useState("");
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target instanceof HTMLDivElement) {
       const {

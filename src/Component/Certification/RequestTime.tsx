@@ -1,14 +1,24 @@
 import { Typography } from "../Base/Typography";
 import { Modal } from "../Base/Modal";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { Button } from "../Base/Button";
 import styled, { css } from "styled-components";
 import { flexColumn } from "../../style";
 import { TypograpyBox } from "./TypograpyBox";
 
-export function RequestTime() {
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+interface RequestTimeProps {
+  date: string;
+  time: string;
+  setTime: Dispatch<SetStateAction<string>>;
+  setDate: Dispatch<SetStateAction<string>>;
+}
+
+export function RequestTime({
+  date,
+  time,
+  setDate,
+  setTime,
+}: RequestTimeProps) {
   const [modal, setModal] = useState(false);
 
   const handleDate = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +40,7 @@ export function RequestTime() {
     setModal(false);
   };
   return (
-    <div>
+    <>
       <TypographyBox>
         <Typography size="16">충전서비스 요청시간</Typography>
         <Typography size="12" color="gray2">
@@ -66,7 +76,7 @@ export function RequestTime() {
           </ButtonBox>
         </ModalContent>
       </Modal>
-    </div>
+    </>
   );
 }
 
@@ -94,7 +104,6 @@ const ButtonBox = styled.div`
   height: 30%;
 `;
 const TypographyBox = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn}
   gap: ${({ theme: { spacing } }) => spacing[4]};
 `;

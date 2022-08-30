@@ -1,6 +1,6 @@
 import { useState, MouseEvent, ChangeEvent } from "react";
 import styled from "styled-components";
-
+import { Dispatch, SetStateAction } from "react";
 import { CarSelectList } from "./CarSelectList";
 import { Typography } from "../Base/Typography";
 import { WarnningText } from "../WarnningText";
@@ -9,10 +9,20 @@ import { TypograpyBox } from "./TypograpyBox";
 import { Modal } from "../Base/Modal";
 import { flexColumn } from "../../style";
 
-export function CarInfomation() {
+interface CarInfomationProps {
+  carName: string;
+  carNum: string;
+  setCarNum: Dispatch<SetStateAction<string>>;
+  setCarName: Dispatch<SetStateAction<string>>;
+}
+
+export function CarInfomation({
+  carNum,
+  setCarNum,
+  carName,
+  setCarName,
+}: CarInfomationProps) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [carName, setCarName] = useState("");
-  const [carNum, setCarNum] = useState("");
   const handleOpenModal = () => {
     setModalVisible(true);
   };
