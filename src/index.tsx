@@ -4,6 +4,12 @@ import { GlobalStyle, theme } from "./style";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 
+declare global {
+  interface Window {
+    naver: any;
+  }
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
