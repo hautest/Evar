@@ -9,20 +9,7 @@ interface TypographyProps {
   fontWeight?: 400 | 500;
 }
 
-export function Typography({
-  children,
-  size,
-  color = "black",
-  fontWeight = 500,
-}: TypographyProps) {
-  return (
-    <StyleTypography size={size} fontWeight={fontWeight} color={color}>
-      {children}
-    </StyleTypography>
-  );
-}
-
-const StyleTypography = styled.p<Omit<TypographyProps, "children">>`
+export const Typography = styled.p<TypographyProps>`
   font-size: ${({ size }) => size};
   color: ${({ color }) => color};
   font-weight: ${({ fontWeight }) => fontWeight};
