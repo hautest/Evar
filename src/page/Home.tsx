@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { locationAtom, coordinateAtom } from "../atom";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { flexJustCenterAlignCenter } from "../style";
 import { Button, Map, Typography } from "../Component";
 
 export function Home() {
@@ -60,9 +61,7 @@ const Header = styled.header`
     color: ${colors.white};
   `}
   height: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${flexJustCenterAlignCenter}
 `;
 const ButtonBox = styled.footer`
   height: 5%;

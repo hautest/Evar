@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Typography } from "./Base/Typography";
 import { Marker } from "./Marker";
 import { locationAtom, coordinateAtom } from "../atom";
+import { flexJustCenterAlignCenter } from "../style";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 
@@ -98,15 +99,11 @@ const MapRender = styled.main`
   width: 100%;
   height: 95%;
   z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${flexJustCenterAlignCenter}
 `;
 
 const Location = styled.div`
   width: 100%;
   height: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${flexJustCenterAlignCenter}
 `;
