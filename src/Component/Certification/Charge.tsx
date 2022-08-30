@@ -24,10 +24,10 @@ export function Charge() {
   return (
     <div>
       <Typography size="16">충전량</Typography>
-      <Typography size="12" color="gray">
+      <Typography size="12" color="gray2">
         희망 충전량을 선택해주세요
       </Typography>
-      <Typography size="12" color="gray">
+      <Typography size="12" color="gray2">
         현재 20kWh(120km)만 선택 가능합니다
       </Typography>
       <TypograpyBox onClick={handleModalOn}>
