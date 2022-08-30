@@ -16,14 +16,19 @@ const PHONE_NUMBER = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 
 interface PhoneProps {
   setPhoneCertification: Dispatch<SetStateAction<boolean>>;
+  setPhoneNum: Dispatch<SetStateAction<string>>;
+  phoneNum: string;
 }
 
-export function Phone({ setPhoneCertification }: PhoneProps) {
+export function Phone({
+  phoneNum,
+  setPhoneNum,
+  setPhoneCertification,
+}: PhoneProps) {
   const [state, setState] = useState(false);
   const [sendCertification, setSendCertification] = useState(false);
   const [isCertification, setIsCertification] = useState(false);
 
-  const [phoneNumValue, setPhoneNumValue] = useState("");
   const [certificationValue, setCertificationValue] = useState("");
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +36,7 @@ export function Phone({ setPhoneCertification }: PhoneProps) {
       target: { value },
     } = e;
     if (REGEXP_NUMBER.test(value)) return;
-    setPhoneNumValue(value.slice(0, 11));
+    setPhoneNum(value.slice(0, 11));
   };
   const handleCertChange = (e: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -48,12 +53,12 @@ export function Phone({ setPhoneCertification }: PhoneProps) {
     setPhoneCertification(true);
   };
   useEffect(() => {
-    if (!PHONE_NUMBER.test(phoneNumValue) || phoneNumValue.length !== 11) {
+    if (!PHONE_NUMBER.test(phoneNum) || phoneNum.length !== 11) {
       setState(false);
       return;
     }
     setState(true);
-  }, [phoneNumValue]);
+  }, [phoneNum]);
   return (
     <StyledPhone>
       <Typography size="16">휴대폰번호 인증</Typography>
@@ -64,14 +69,14 @@ export function Phone({ setPhoneCertification }: PhoneProps) {
         onClick={handleSendPhone}
         buttonState={!state || sendCertification}
         buttonValue="인증번호 발송"
-        inputValue={phoneNumValue}
+        inputValue={phoneNum}
         placeholder="테스트용으로 010 아무 번호 입력"
         onChange={handlePhoneChange}
         maxLength={11}
         inputState={sendCertification}
       />
       <WarnningText
-        value={phoneNumValue}
+        value={phoneNum}
         state={!state}
         text={{
           zeroLen: "휴대폰 번호를 적어주세요",
