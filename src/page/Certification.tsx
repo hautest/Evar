@@ -8,6 +8,7 @@ import {
   Typography,
   CarInfomation,
   Charge,
+  RequestTime,
 } from "../Component";
 
 export function Certification() {
@@ -28,6 +29,7 @@ export function Certification() {
         <div>
           <CarInfomation />
           <Charge />
+          <RequestTime />
         </div>
       )}
     </StyledCertification>
