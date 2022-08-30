@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { Map, Typography } from "../Component";
+import { Button, Map, Typography } from "../Component";
 
 export function Home() {
+  const nav = useNavigate();
+  const handleClick = () => {
+    nav("/search");
+  };
   return (
     <StyledHome>
       <Header>
@@ -13,12 +18,15 @@ export function Home() {
       <Main>
         <Map />
       </Main>
+      <ButtonBox>
+        <Button onClick={handleClick}>위치를 검색하러가기</Button>
+      </ButtonBox>
     </StyledHome>
   );
 }
 
 const Main = styled.main`
-  height: 95%;
+  height: 90%;
   width: 100%;
 `;
 
@@ -35,4 +43,7 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+const ButtonBox = styled.footer`
+  height: 5%;
 `;

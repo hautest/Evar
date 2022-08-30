@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { Typography } from "./Base/Typography";
-import { Button } from "./Base/Button";
 import { locationAtom, coordinateAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
@@ -71,9 +70,6 @@ export function Map() {
       <MapRender id="map">
         <Marker>중간 장소로 지정</Marker>
       </MapRender>
-      <ButtonBox>
-        <Button>위치를 검색하러가기</Button>
-      </ButtonBox>
     </StyledMap>
   );
 }
@@ -97,7 +93,7 @@ const StyledMap = styled.div`
 
 const MapRender = styled.main`
   width: 100%;
-  height: 90%;
+  height: 95%;
   z-index: 2;
   display: flex;
   justify-content: center;
@@ -110,8 +106,4 @@ const Location = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const ButtonBox = styled.div`
-  height: 5%;
 `;
