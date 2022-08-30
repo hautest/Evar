@@ -1,2 +1,3 @@
 export * from "./Home";
-export * from "./SearchLocation";
+export * from "./TermsAndConditions";
+export * from "./Certification";

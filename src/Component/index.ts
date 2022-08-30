@@ -5,3 +5,6 @@ export * from "./Base/Modal";
 export * from "./Base/Select";
 export * from "./Map";
 export * from "./Marker";
+export * from "./TermsAndConditions/Notification";
+export * from "./TermsAndConditions/SelectBox";
+export * from "./Header";
