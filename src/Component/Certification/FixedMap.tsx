@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import { Typography } from "../Base/Typography";
-import { coordinateAtom, locationAtom } from "../../atom";
+import { coordinateAtom, locationAtom } from "../../atom/location";
 
 export function FixedMap() {
   const coordination = useRecoilValue(coordinateAtom);

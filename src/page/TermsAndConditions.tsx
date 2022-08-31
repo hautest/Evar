@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { flexColumn } from "../style";
 import { termsAndConditionsObject } from "../termsAndConditionsObject";
-import { locationAtom } from "../atom";
+import { locationAtom } from "../atom/location";
 import {
   Modal,
   Button,

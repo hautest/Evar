@@ -15,7 +15,7 @@ import {
   Button,
 } from "../Component";
 import { useRecoilValue } from "recoil";
-import { locationAtom } from "../atom";
+import { locationAtom } from "../atom/location";
 import { flexColumn } from "../style";
 import { useNavigate } from "react-router-dom";
 

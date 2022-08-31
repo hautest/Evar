@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { useEffect } from "react";
 import { Typography } from "./Base/Typography";
 import { Marker } from "./Marker";
-import { locationAtom, coordinateAtom } from "../atom";
+import { locationAtom, coordinateAtom } from "../atom/location";
 import { flexJustCenterAlignCenter } from "../style";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";

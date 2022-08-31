@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { locationAtom, coordinateAtom } from "../atom";
+import { locationAtom, coordinateAtom } from "../atom/location";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { flexJustCenterAlignCenter } from "../style";
 import { Button, Map, Typography } from "../Component";
