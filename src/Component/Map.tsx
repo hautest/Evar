@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useEffect } from "react";
 import { Typography } from "./Base/Typography";
 import { Marker } from "./Marker";
@@ -20,7 +20,9 @@ export function Map() {
     }
     nav("/TermsAndConditions");
   };
-
+  const navHelp = () => {
+    nav("/help");
+  };
   useEffect(() => {
     const mapDiv = document.getElementById("map");
     const jeju = new window.naver.maps.LatLngBounds(
@@ -85,6 +87,11 @@ export function Map() {
             ? "중간 장소로 지정"
             : "제주도안에서만 호출 가능합니다."}
         </Marker>
+        <NavHelpImg
+          onClick={navHelp}
+          alt="상담사 아이콘"
+          src="https://evarclab.github.io/OnDemandChargingService/assets/icon/qna/ic-qna.svg"
+        />
       </MapRender>
     </StyledMap>
   );
@@ -106,4 +113,17 @@ const Location = styled.div`
   width: 100%;
   height: 5%;
   ${flexJustCenterAlignCenter}
+`;
+
+const NavHelpImg = styled.img`
+  ${({ theme: { colors, spacing } }) => css`
+    background-color: ${colors.primary};
+    right: ${spacing[20]};
+  `}
+  width: 5vh;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  cursor: pointer;
+  bottom: 40px;
 `;
