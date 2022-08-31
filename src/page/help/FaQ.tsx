@@ -1,3 +1,11 @@
+import styled from "styled-components";
+import { Select, HelpHeader } from "../../Component";
+
 export function FaQ() {
-  return <div>FaddQ</div>;
+  return (
+    <div>
+      <HelpHeader />
+      asd
+    </div>
+  );
 }

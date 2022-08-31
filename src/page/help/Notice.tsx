@@ -1,3 +1,10 @@
+import { HelpHeader } from "../../Component";
+
 export function Notice() {
-  return <div>notice</div>;
+  return (
+    <div>
+      <HelpHeader />
+      notice
+    </div>
+  );
 }

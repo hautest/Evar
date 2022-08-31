@@ -17,3 +17,4 @@ export * from "./Certification/Charge";
 export * from "./Certification/RequestTime";
 export * from "./ModalBackground";
 export * from "./ButtonInModal";
+export * from "./Help/HelpHeader";
