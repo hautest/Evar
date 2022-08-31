@@ -1,7 +1,11 @@
 import { useState } from "react";
-import styled from "styled-components";
-import { HelpHeader, Select, Typography, Modal } from "../../Component";
-import { flexColumn } from "../../style";
+import {
+  HelpHeader,
+  Select,
+  Typography,
+  Modal,
+  LongTextModalBox,
+} from "../../Component";
 
 export function Notice() {
   const [modal, setModal] = useState(false);
@@ -18,7 +22,7 @@ export function Notice() {
         <Typography size="14">서비스 이용 안내</Typography>
       </Select>
       <Modal visible={modal} onClick={handleModalOff}>
-        <ModalInnerBox>
+        <LongTextModalBox>
           부르면찾아오는On Demand 충전서비스이용약관제1장총칙제1조(목적)(주)
           에바(이하"회사"라합니다)는회사가제공하는서비스에대한약관(이하‘본약관’이라합니다)을마련하였습니다.본약관은회사와이용자의권리와의무및기타필요한사항을규정하고있습니다.제2조(정의)본약관에서사용하는용어의뜻은다음과같습니다.①“부르면찾아오는On
           Demand충전서비스”(이하“서비스”라합니다)라함은회사가본이용약관에따른서비스를이용자에게제공하기위하여구축한모바일전기차충전서비스예약플랫폼으로서,“이용자”가이용할수있는전기차충전관련제반서비스를말합니다.②“이용자”라함은함은회사의"서비스"에접속하여약관에따라“예약신청”을완료한고객을말합니다.③“예약신청”이라함은“이용자”가전기차충전예약내역을기입하여예약을신청하는것을말합니다.“예약신청”은‘“예약확정”및“차량충전서비스”제공’을의미하지않으며,“이용자”중선정을통해“예약확정”및“차량충전서비스”를제공합니다.④“예약확정”이라함은“예약신청”을완료한“이용자”들중에서“차량충전서비스”를제공받을“이용자”를선정하는것을말합니다.“회사”는당일“예약신청”을완료한“이용자”
@@ -138,19 +142,8 @@ export function Notice() {
           주소가없는경우에는거소를관할하는지방법원의전속관할로합니다. 다만,
           제소당시이용자의주소또는거소가분명하지않거나외국거주자의경우에는민사소송법상의관할법원에제기합니다.부칙제1조(시행일)
           이약관은2020년10월1일부터시행한다.
-        </ModalInnerBox>
+        </LongTextModalBox>
       </Modal>
     </div>
   );
 }
-const ModalInnerBox = styled.article`
-  padding: ${({ theme: { spacing } }) => spacing[20]};
-  background-color: ${({ theme: { colors } }) => colors.white};
-  ${flexColumn}
-  overflow-y: scroll;
-  height: 50vh;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  word-break: break-all;
-`;

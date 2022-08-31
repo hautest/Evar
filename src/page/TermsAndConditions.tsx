@@ -6,7 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { flexColumn } from "../style";
 import { termsAndConditionsObject } from "../termsAndConditionsObject";
 import { locationAtom } from "../atom";
-import { Modal, Button, Notification, SelectBox, Header } from "../Component";
+import {
+  Modal,
+  Button,
+  Notification,
+  SelectBox,
+  Header,
+  LongTextModalBox,
+} from "../Component";
 
 export function TermsAndConditions() {
   const [state, setState] = useState({
@@ -86,33 +93,20 @@ export function TermsAndConditions() {
       >
         {modalValue && (
           <>
-            <ModalInnerBox>
+            <LongTextModalBox>
               {termsAndConditionsObject[modalValue]}
               <ButtonBox>
                 <Button fontSize="20" onClick={handleButtonClick}>
                   동의하기
                 </Button>
               </ButtonBox>
-            </ModalInnerBox>
+            </LongTextModalBox>
           </>
         )}
       </Modal>
     </StyledTermsAndConditions>
   );
 }
-
-const ModalInnerBox = styled.article`
-  padding: ${({ theme: { spacing } }) => spacing[20]};
-  background-color: ${({ theme: { colors } }) => colors.white};
-  ${flexColumn}
-  overflow-y: scroll;
-  height: 50vh;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  word-break: break-all;
-`;
-
 const ButtonBox = styled.div``;
 
 const Footer = styled.footer``;

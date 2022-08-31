@@ -1,7 +1,10 @@
 import { useState, MouseEvent } from "react";
-import styled from "styled-components";
-import { HelpHeader, SelectBox, Modal } from "../../Component";
-import { flexColumn } from "../../style";
+import {
+  HelpHeader,
+  SelectBox,
+  Modal,
+  LongTextModalBox,
+} from "../../Component";
 import { termsAndConditionsObject } from "../../termsAndConditionsObject";
 
 export function Term() {
@@ -32,21 +35,10 @@ export function Term() {
       <HelpHeader />
       <SelectBox onClick={handleClick} />
       <Modal visible={modal} onClick={handleModalOff}>
-        <ModalInnerBox>
+        <LongTextModalBox>
           {modalContent && termsAndConditionsObject[modalContent]}
-        </ModalInnerBox>
+        </LongTextModalBox>
       </Modal>
     </div>
   );
 }
-const ModalInnerBox = styled.article`
-  padding: ${({ theme: { spacing } }) => spacing[20]};
-  background-color: ${({ theme: { colors } }) => colors.white};
-  ${flexColumn}
-  overflow-y: scroll;
-  height: 50vh;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  word-break: break-all;
-`;
