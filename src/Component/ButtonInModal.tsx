@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { flex } from "../style";
 
 interface ButtonInModalProps {
-  leftValue: string;
+  leftValue?: string;
   rightValue: string;
-  leftClick: (e: MouseEvent<HTMLDivElement>) => void;
+  leftClick?: (e: MouseEvent<HTMLDivElement>) => void;
   rightClick: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
@@ -18,9 +18,11 @@ export function ButtonInModal({
 }: ButtonInModalProps) {
   return (
     <StyledButtonInModal>
-      <Typography onClick={leftClick} color="primary" size="14">
-        {leftValue}
-      </Typography>
+      {leftValue && (
+        <Typography onClick={leftClick} color="primary" size="14">
+          {leftValue}
+        </Typography>
+      )}
       <Typography onClick={rightClick} color="primary" size="14">
         {rightValue}
       </Typography>
