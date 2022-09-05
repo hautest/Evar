@@ -4,6 +4,7 @@ import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { Button } from "../Base/Button";
 import styled, { css } from "styled-components";
 import { flexColumn } from "../../style";
+import { useGetTime } from "../../hooks";
 import { TypograpyBox } from "./TypograpyBox";
 
 interface RequestTimeProps {
@@ -20,23 +21,45 @@ export function RequestTime({
   setTime,
 }: RequestTimeProps) {
   const [modal, setModal] = useState(false);
-
-  const handleDate = (e: ChangeEvent<HTMLInputElement>) => {
+  const [selectTime, setSelectTime] = useState({ date: "", time: "" });
+  const [currentDate, currentTime] = useGetTime();
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const {
-      target: { value },
+      target: { value, type },
     } = e;
-    setDate(value);
-  };
-  const handleTime = (e: ChangeEvent<HTMLInputElement>) => {
-    const {
-      target: { value },
-    } = e;
-    setTime(value);
+    if (type === "date") {
+      setSelectTime((prev) => {
+        const newState = { ...prev, date: value };
+        return newState;
+      });
+      return;
+    }
+    if (type === "time") {
+      setSelectTime((prev) => {
+        const newState = { ...prev, time: value };
+        return newState;
+      });
+    }
   };
   const handleModalOn = () => {
     setModal(true);
   };
   const handleModalOff = () => {
+    // 선택한 날, 시간이 과거인지 묻는 조건문
+    if (
+      parseInt(selectTime.date.replace("-", "").replace("-", "")) <
+        parseInt(currentDate.replace("-", "").replace("-", "")) ||
+      (parseInt(selectTime.date.replace("-", "").replace("-", "")) ===
+        parseInt(currentDate.replace("-", "").replace("-", "")) &&
+        parseInt(selectTime.time.replace(":", "")) <
+          parseInt(currentTime.replace(":", "")))
+    ) {
+      setSelectTime({ date: "", time: "" });
+      alert("과거의 시간을 선택하셨어요~");
+      return;
+    }
+    setDate(selectTime.date);
+    setTime(selectTime.time);
     setModal(false);
   };
   return (
@@ -66,8 +89,17 @@ export function RequestTime({
       <Modal visible={modal}>
         <ModalContent>
           <div>
-            <TimeInput onChange={handleDate} value={date} type="date" />
-            <TimeInput value={time} onChange={handleTime} type="time" />
+            <TimeInput
+              onChange={handleChange}
+              value={selectTime.date}
+              type="date"
+            />
+            <TimeInput
+              value={selectTime.time}
+              onChange={handleChange}
+              disabled={!selectTime.date}
+              type="time"
+            />
           </div>
           <ButtonBox>
             <Button onClick={handleModalOff} fontSize="14">

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useWindowSize } from "./hooks/useWindowSize";
+import { useWindowSize } from "./hooks";
 
 import {
   Home,

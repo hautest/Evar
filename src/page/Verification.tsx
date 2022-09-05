@@ -32,7 +32,8 @@ export function Verification() {
   const [time, setTime] = useState("");
 
   const [modal, setModal] = useState(false);
-  const state = carName && chargeValue && date && time && carNum.length === 4;
+  const isSelectAllValue =
+    carName && chargeValue && date && time && carNum.length === 4;
   const handleClick = () => {
     setModal(true);
   };
@@ -73,7 +74,7 @@ export function Verification() {
             setDate={setDate}
             setTime={setTime}
           />
-          {state && (
+          {isSelectAllValue && (
             <div>
               <Typography size="16">결제 금액</Typography>
               <TypographyBox>
@@ -101,7 +102,7 @@ export function Verification() {
             </div>
           )}
           <ButtonBox>
-            <Button onClick={handleClick} disabled={!state}>
+            <Button onClick={handleClick} disabled={!isSelectAllValue}>
               무료로 예약하기
             </Button>
           </ButtonBox>
@@ -168,9 +169,7 @@ const TypographyBox = styled.div`
   gap: ${({ theme: { spacing } }) => spacing[4]};
 `;
 const Hr = styled.hr`
-  ${({ theme: { colors } }) => css`
-    color: ${colors.gray2};
-  `}
+  color: ${({ theme: { colors } }) => colors.gray2};
 `;
 const Main = styled.main`
   ${flexColumn}
