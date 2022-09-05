@@ -68,7 +68,7 @@ export function TermsAndConditions() {
       </TopsideBox>
       <BottomBox>
         <SelectBox state={state} onClick={handleSelect} />
-        <Footer>
+        <footer>
           <Button
             onClick={handleNextPage}
             disabled={
@@ -83,7 +83,7 @@ export function TermsAndConditions() {
           >
             다음
           </Button>
-        </Footer>
+        </footer>
       </BottomBox>
       <Modal
         visible={modalVisible}
@@ -95,11 +95,11 @@ export function TermsAndConditions() {
           <>
             <LongTextModalBox>
               {termsAndConditionsObject[modalValue]}
-              <ButtonBox>
+              <div>
                 <Button fontSize="20" onClick={handleButtonClick}>
                   동의하기
                 </Button>
-              </ButtonBox>
+              </div>
             </LongTextModalBox>
           </>
         )}
@@ -107,10 +107,6 @@ export function TermsAndConditions() {
     </StyledTermsAndConditions>
   );
 }
-const ButtonBox = styled.div``;
-
-const Footer = styled.footer``;
-
 const StyledTermsAndConditions = styled.div`
   ${({ theme: { spacing } }) => css`
     gap: ${spacing[10]};
