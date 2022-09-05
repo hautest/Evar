@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useWindowSize } from "./hooks/useWindowSize";
 
 import {
   Home,
@@ -12,6 +14,7 @@ import {
 } from "./page";
 
 function App() {
+  useWindowSize();
   return (
     <BrowserRouter>
       <Routes>

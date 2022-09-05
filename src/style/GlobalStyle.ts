@@ -7,4 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'NotoSansCJKkrMedium';
     box-sizing: border-box;
   }
+  #root {
+    height: 100%;
+  }
 `;

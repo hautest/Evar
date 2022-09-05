@@ -53,7 +53,7 @@ const Main = styled.main`
 
 const StyledHome = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 `;
 const Header = styled.header`
   ${({ theme: { colors } }) => css`

@@ -64,6 +64,7 @@ export function Map() {
         }
       );
     };
+    callBack();
     const event = window.naver.maps.Event.addDOMListener(
       mapDiv,
       "click",
