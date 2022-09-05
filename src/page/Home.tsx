@@ -7,7 +7,7 @@ import { Button, Map, Typography } from "../Component";
 export function Home() {
   const [location, setLocation] = useRecoilState(locationAtom);
   const setCoordinate = useSetRecoilState(coordinateAtom);
-  const search = () => {
+  const handleSearchLocation = () => {
     new window.daum.Postcode({
       oncomplete: function (data: any) {
         setLocation(data.jibunAddress);
@@ -40,7 +40,7 @@ export function Home() {
         <Map />
       </Main>
       <ButtonBox>
-        <Button onClick={search}>위치를 검색하러가기</Button>
+        <Button onClick={handleSearchLocation}>위치를 검색하러가기</Button>
       </ButtonBox>
     </StyledHome>
   );
