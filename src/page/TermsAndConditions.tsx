@@ -62,11 +62,11 @@ export function TermsAndConditions() {
   }, [location, nav]);
   return (
     <StyledTermsAndConditions>
-      <TopsideBox>
+      <Box gap={20}>
         <Header />
         <Notification />
-      </TopsideBox>
-      <BottomBox>
+      </Box>
+      <Box gap={10}>
         <SelectBox state={state} onClick={handleSelect} />
         <footer>
           <Button
@@ -84,7 +84,7 @@ export function TermsAndConditions() {
             다음
           </Button>
         </footer>
-      </BottomBox>
+      </Box>
       <Modal
         visible={modalVisible}
         onClick={() => {
@@ -92,16 +92,14 @@ export function TermsAndConditions() {
         }}
       >
         {modalValue && (
-          <>
-            <LongTextModalBox>
-              {termsAndConditionsObject[modalValue]}
-              <div>
-                <Button fontSize="20" onClick={handleButtonClick}>
-                  동의하기
-                </Button>
-              </div>
-            </LongTextModalBox>
-          </>
+          <LongTextModalBox>
+            {termsAndConditionsObject[modalValue]}
+            <div>
+              <Button fontSize="20" onClick={handleButtonClick}>
+                동의하기
+              </Button>
+            </div>
+          </LongTextModalBox>
         )}
       </Modal>
     </StyledTermsAndConditions>
@@ -117,12 +115,7 @@ const StyledTermsAndConditions = styled.div`
   height: 100vh;
 `;
 
-const TopsideBox = styled.div`
+const Box = styled.div<{ gap: 10 | 20 }>`
   ${flexColumn}
-  gap: ${({ theme: { spacing } }) => spacing[20]};
-`;
-
-const BottomBox = styled.div`
-  ${flexColumn}
-  gap: ${({ theme: { spacing } }) => spacing[10]};
+  gap: ${({ theme: { spacing }, gap }) => spacing[gap]};
 `;
