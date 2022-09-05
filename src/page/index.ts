@@ -1,6 +1,6 @@
 export * from "./Home";
 export * from "./TermsAndConditions";
-export * from "./Certification";
+export * from "./Verification";
 export * from "./Confirmation";
 export * from "./help/Help";
 export * from "./help/FaQ";

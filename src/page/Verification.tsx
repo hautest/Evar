@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
-import { TypograpyBox } from "../Component/Certification/TypograpyBox";
+import { TypograpyBox } from "../Component/Verification/TypograpyBox";
 import {
   Header,
   FixedMap,
@@ -19,11 +19,11 @@ import { locationAtom } from "../atom/location";
 import { flexColumn } from "../style";
 import { useNavigate } from "react-router-dom";
 
-export function Certification() {
+export function Verification() {
   const location = useRecoilValue(locationAtom);
   const nav = useNavigate();
 
-  const [isPhonCertification, setPhoneCertification] = useState(false);
+  const [isPhonVerification, setPhoneVerification] = useState(false);
   const [phoneNum, setPhoneNum] = useState("");
   const [carName, setCarName] = useState("");
   const [carNum, setCarNum] = useState("");
@@ -43,14 +43,14 @@ export function Certification() {
     nav("/confirmation");
   };
   return (
-    <StyledCertification>
+    <StyledVerification>
       <Header />
       <FixedMap />
-      {!isPhonCertification ? (
+      {!isPhonVerification ? (
         <Phone
           phoneNum={phoneNum}
           setPhoneNum={setPhoneNum}
-          setPhoneCertification={setPhoneCertification}
+          setPhoneVerification={setPhoneVerification}
         />
       ) : (
         <TypograpyBox>
@@ -58,7 +58,7 @@ export function Certification() {
           <Typography size="16">✅</Typography>
         </TypograpyBox>
       )}
-      {isPhonCertification && (
+      {isPhonVerification && (
         <Main>
           <CarInfomation
             setCarNum={setCarNum}
@@ -139,11 +139,11 @@ export function Certification() {
           />
         </ModalBackground>
       </Modal>
-    </StyledCertification>
+    </StyledVerification>
   );
 }
 
-const StyledCertification = styled.div`
+const StyledVerification = styled.div`
   ${({ theme: { spacing } }) => css`
     padding: 0 ${spacing[20]};
     gap: ${spacing[12]};

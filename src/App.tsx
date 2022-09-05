@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useWindowSize } from "./hooks/useWindowSize";
 
 import {
   Home,
   TermsAndConditions,
-  Certification,
+  Verification,
   Confirmation,
   Help,
   FaQ,
@@ -20,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
-        <Route path="/certification" element={<Certification />} />
+        <Route path="/verification" element={<Verification />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/help" element={<Help />} />
         <Route path="/help/faq" element={<FaQ />} />

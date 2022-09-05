@@ -15,7 +15,7 @@ const REGEXP_NUMBER = /[^0-9]/;
 const PHONE_NUMBER = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 
 interface PhoneProps {
-  setPhoneCertification: Dispatch<SetStateAction<boolean>>;
+  setPhoneVerification: Dispatch<SetStateAction<boolean>>;
   setPhoneNum: Dispatch<SetStateAction<string>>;
   phoneNum: string;
 }
@@ -23,13 +23,13 @@ interface PhoneProps {
 export function Phone({
   phoneNum,
   setPhoneNum,
-  setPhoneCertification,
+  setPhoneVerification,
 }: PhoneProps) {
   const [state, setState] = useState(false);
-  const [sendCertification, setSendCertification] = useState(false);
-  const [isCertification, setIsCertification] = useState(false);
+  const [sendVerification, setSendVerification] = useState(false);
+  const [isVerification, setIsVerification] = useState(false);
 
-  const [certificationValue, setCertificationValue] = useState("");
+  const [verificationValue, setVerificationValue] = useState("");
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -43,14 +43,14 @@ export function Phone({
       target: { value },
     } = e;
     if (REGEXP_NUMBER.test(value)) return;
-    setCertificationValue(value.slice(0, 6));
+    setVerificationValue(value.slice(0, 6));
   };
   const handleSendPhone = () => {
-    setSendCertification(true);
+    setSendVerification(true);
   };
   const handleSendCert = () => {
-    setIsCertification(true);
-    setPhoneCertification(true);
+    setIsVerification(true);
+    setPhoneVerification(true);
   };
   useEffect(() => {
     if (!PHONE_NUMBER.test(phoneNum) || phoneNum.length !== 11) {
@@ -67,13 +67,13 @@ export function Phone({
       </Typography>
       <InputAndButton
         onClick={handleSendPhone}
-        buttonState={!state || sendCertification}
+        buttonState={!state || sendVerification}
         buttonValue="인증번호 발송"
         inputValue={phoneNum}
         placeholder="테스트용으로 010 아무 번호 입력"
         onChange={handlePhoneChange}
         maxLength={11}
-        inputState={sendCertification}
+        inputState={sendVerification}
       />
       <WarnningText
         value={phoneNum}
@@ -83,21 +83,21 @@ export function Phone({
           stateTrue: "올바른 번호가 아닙니다",
         }}
       />
-      {sendCertification && (
+      {sendVerification && (
         <div>
           <InputAndButton
             onClick={handleSendCert}
-            buttonState={certificationValue.length !== 6 || isCertification}
+            buttonState={verificationValue.length !== 6 || isVerification}
             buttonValue="인증확인"
-            inputValue={certificationValue}
+            inputValue={verificationValue}
             placeholder="인증번호"
             onChange={handleCertChange}
             maxLength={6}
-            inputState={isCertification}
+            inputState={isVerification}
           />
           <WarnningText
-            value={certificationValue}
-            state={certificationValue.length !== 6}
+            value={verificationValue}
+            state={verificationValue.length !== 6}
             text={{
               zeroLen: "코드를 적어주세요",
               stateTrue: "올바른 코드가 아닙니다",

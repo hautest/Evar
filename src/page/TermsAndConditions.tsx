@@ -53,7 +53,7 @@ export function TermsAndConditions() {
     });
   };
   const handleNextPage = () => {
-    nav("/certification");
+    nav("/verification");
   };
   useEffect(() => {
     if (!location) {
