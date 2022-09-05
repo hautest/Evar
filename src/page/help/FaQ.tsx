@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { faqData } from "../../Component/Help/data";
+import { faqData } from "../../Component/Help/faqData";
 import {
   Select,
   HelpHeader,
