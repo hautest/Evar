@@ -7,9 +7,10 @@ import { ButtonInModal } from "./ButtonInModal";
 import { ModalBackground } from "./ModalBackground";
 import { Typography } from "./Base/Typography";
 import { flexColumn } from "../style";
+import { useRouter } from "../hooks/useRouter";
 
 export function Header() {
-  const nav = useNavigate();
+  const { back, push } = useRouter();
   const [modalVisible, setModalVisible] = useState(false);
   const handleClick = () => {
     setModalVisible(true);
@@ -18,12 +19,17 @@ export function Header() {
     setModalVisible(false);
   };
   const handleHome = () => {
-    nav("/");
+    push({ url: "/" });
   };
   return (
     <>
-      <StlyedHeader onClick={handleClick}>
-        <Typography size="18">처음으로</Typography>
+      <StlyedHeader>
+        <Typography onClick={handleClick} size="18">
+          처음으로
+        </Typography>
+        <Typography onClick={() => back()} size="18">
+          뒤로
+        </Typography>
       </StlyedHeader>
       <Modal visible={modalVisible}>
         <ModalBackground>

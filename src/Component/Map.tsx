@@ -5,10 +5,10 @@ import { Marker } from "./Marker";
 import { locationAtom, coordinateAtom } from "../atom/location";
 import { flexJustCenterAlignCenter } from "../style";
 import { useRecoilState } from "recoil";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "../hooks/useRouter";
 
 export function Map() {
-  const nav = useNavigate();
+  const { push } = useRouter();
   const [location, setLocation] = useRecoilState(locationAtom);
   const [coordinate, setCoordinate] = useRecoilState(coordinateAtom);
   const locationVaild =
@@ -18,10 +18,10 @@ export function Map() {
       alert("제주도안에서만 호출 가능합니다 !");
       return;
     }
-    nav("/TermsAndConditions");
+    push({ url: "/TermsAndConditions" });
   };
   const navHelp = () => {
-    nav("/help");
+    push({ url: "/help" });
   };
   useEffect(() => {
     const mapDiv = document.getElementById("map");
