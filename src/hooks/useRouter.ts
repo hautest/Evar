@@ -1,5 +1,11 @@
 import { NavigateOptions, useNavigate } from "react-router-dom";
 
+declare global {
+  interface Window {
+    ReactNativeWebView: any;
+  }
+}
+
 const isApp = () => {
   let _isApp = false;
 
